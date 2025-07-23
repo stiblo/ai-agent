@@ -1,20 +1,15 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
+from functions.write_file import write_file
 
-test_cases_files_info = [
-    ("calculator","."),
-    ("calculator", "pkg"),
-    ("calculator", "/bin"),
-    ("calculator", "../")
+print("TEST 1")
+print(write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum"))
+print("END TEST 1")
 
-]
+print("TEST 2")
+print(write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"))
+print("END TEST 2")
 
-test_cases_file_content = [
-    ("calculator", "main.py"),
-    ("calculator", "pkg/calculator.py"),
-    ("calculator", "/bin/cat"),
-    ("calculator", "pkg/does_not_exist.py")
-]
-
-for test in test_cases_file_content:
-    print(get_file_content(test[0], test[1]))
+print("TEST 3")
+print(write_file("calculator", "/tmp/temp.txt", "this should not be allowed"))
+print("END TEST 3")
