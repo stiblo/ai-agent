@@ -1,4 +1,5 @@
 import os
+from google.genai import types
 
 def get_files_info(working_directory, directory="."):
     # This is the way I have done this check, it kinda works properly, but i decided to use the one from the solution files
@@ -52,3 +53,17 @@ def get_files_info(working_directory, directory="."):
         files_info += f'\n- {item}: file_size={size_of_item}, is_dir={is_item_dir}'
 
     return(files_info)
+
+schema_get_files_info = types.FunctionDeclaration(
+    name="get_files_info",
+    description="Lists files in the specified directory along with their sizes, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="The directory to list files from, relative to the working directory. If not provided, lists files in the working directory itself.",
+            ),
+        },
+    ),
+)
