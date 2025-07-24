@@ -1,5 +1,6 @@
 import os
 from config import MAX_CHARS
+from google.genai import types
 
 def get_file_content(working_directory, file_path):
     full_file_path = os.path.join(working_directory, file_path)
@@ -23,6 +24,20 @@ def get_file_content(working_directory, file_path):
         return f'Error: Unable to read the file {e}'
     
     return content
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Return contents of the file, truncated at maximum chars defined in config.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="File path to the file that we are returning contents of.",
+            ),
+        },
+    ),
+)
     
 
     

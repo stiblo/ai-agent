@@ -3,7 +3,6 @@ import sys
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from functions.get_files_info import schema_get_files_info
 from call_function import available_functions
 from prompts import system_prompt
 
@@ -52,10 +51,10 @@ def main():
     
 
     if generated_content.function_calls:
-        function_call_part = generated_content.function_calls[0]
-        print(f"Calling function: {function_call_part.name}({function_call_part.args})")
+          function_call_part = generated_content.function_calls[0]
+          print(f"Calling function: {function_call_part.name}({function_call_part.args})")
     else:
-         print(generated_content.text)
+          print(generated_content.text)
 
 
 if __name__ == "__main__":
